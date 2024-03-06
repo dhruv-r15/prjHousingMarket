@@ -6,67 +6,37 @@ using System.Threading.Tasks;
 
 namespace prjHousingMarket
 {
-
-    
-
     public class AgentDB
     {
-        public static List<Agent> agentList = new List<Agent>();
-        public static void Menu()
+        private static List<Agent> AgentList = new List<Agent>();
+
+        public AgentDB()
         {
-            Console.WriteLine("Welcome to Dhruv's Agents ");
-            Console.WriteLine("**************************");
-            Console.WriteLine("Please select an option: ");
-            Console.WriteLine("Enter 1 to view all agents (1) ");
-            Console.WriteLine("Enter 2 to add new agents (2) ");
-
-            String userInput = Console.ReadLine();
-
-            if (userInput == "")
+            if (AgentList.Count < 0)
             {
-                Console.WriteLine("Can you not type?");
-            }
-            else if (userInput.Equals("1 + \n"))
-            {
-                PrintAgents();
-            }
-            else if (userInput.Equals("2 + \n"))
-            {
-                AddAgents();
-
+                AgentList.Add(new Agent(1, "Bob", "Smith",
+                false, "Black"));
+                AgentList.Add(new Agent(2, "Sand", "Bra",
+                                true, "Not from here"));
+                AgentList.Add(new Agent(3, "Jane", "Bra",
+                                false, "Maybe from here"));
             }
         }
 
-        public static void PrintAgents()
+        public void AddAgent(Agent newAgent)
         {
-            foreach (Agent agent in agentList)
+            AgentList.Add(newAgent);
+        }
+        public String PrintAll()
+        {
+            String strOutput = "";
+            foreach (Agent agent in AgentList)
             {
-                Console.WriteLine(agent.ToString());
+                strOutput += agent.ToString();
+                strOutput += "++++++++++++++++++++";
             }
+            return strOutput;
         }
 
-        public static void AddAgents()
-        {
-            Console.WriteLine("Please enter agent number: ");
-            String agentNo = Console.ReadLine();
-            Console.WriteLine("Please enter agent name: ");
-            String agentName = Console.ReadLine();
-            Console.WriteLine("Please enter agent surname: ");
-            String agentSurname = Console.ReadLine();
-            Console.WriteLine("Do they have their license? Yes or No: ");
-            String agentLicense = Console.ReadLine();
-            Console.WriteLine("Please enter your race: ");
-            String agentRace = Console.ReadLine();
-
-            bool license = false;
-
-            if (agentLicense.ToUpper().Equals("YES"))
-            {
-                license = true;
-            }
-            agentList.Add(new Agent(Convert.ToInt32(agentNo), agentName, agentSurname, license, agentRace));
-
-
-        }
     }
 }
