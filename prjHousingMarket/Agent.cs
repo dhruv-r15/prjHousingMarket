@@ -34,7 +34,7 @@ namespace prjHousingMarket
         public override String ToString()
         {
             return "ID :" + ID + "\nName: " + strName
-                + "\nSurname: " + strSurname + "\n Has their license: " + bDriver + "\nRace: " + strRace;
+                + "\nSurname: " + strSurname + "\nHas their license: " + bDriver + "\nRace: " + strRace + "\n";
 
         }
     }
